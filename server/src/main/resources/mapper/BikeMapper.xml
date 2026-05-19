@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.mapper.BikeMapper">
+
+    <sql id="baseColumns">
+        b.id, b.bike_code, b.status, b.lng, b.lat, b.area_id, b.create_time, b.update_time
+    </sql>
+
+    <select id="findList" resultType="Bike">
+        SELECT <include refid="baseColumns"/>, pa.name AS area_name
+        FROM bike b
+        LEFT JOIN parking_area pa ON b.area_id = pa.id
+        <where>
+            <if test="bikeCode != null and bikeCode != ''">AND b.bike_code LIKE CONCAT('%', #{bikeCode}, '%')</if>
+            <if test="status != null">AND b.status = #{status}</if>
+            <if test="areaId != null">AND b.area_id = #{areaId}</if>
+        </where>
+        ORDER BY b.create_time DESC
+    </select>
+
+    <select id="findById" resultType="Bike">
+        SELECT <include refid="baseColumns"/>, pa.name AS area_name
+        FROM bike b
+        LEFT JOIN parking_area pa ON b.area_id = pa.id
+        WHERE b.id = #{id}
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bike (bike_code, status, lng, lat, area_id)
+        VALUES (#{bikeCode}, #{status}, #{lng}, #{lat}, #{areaId})
+    </insert>
+
+    <update id="update">
+        UPDATE bike
+        <set>
+            <if test="bikeCode != null">bike_code = #{bikeCode},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="lng != null">lng = #{lng},</if>
+            <if test="lat != null">lat = #{lat},</if>
+            <if test="areaId != null">area_id = #{areaId},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM bike WHERE id = #{id}
+    </delete>
+
+    <update id="updateStatus">
+        UPDATE bike SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <select id="countByStatus" resultType="int">
+        SELECT COUNT(*) FROM bike WHERE status = #{status}
+    </select>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM bike
+    </select>
+
+</mapper>

@@ -1,0 +1,27 @@
+{
+  "pages": [
+    { "path": "pages/index/index", "style": { "navigationBarTitleText": "共享单车" } },
+    { "path": "pages/login/index", "style": { "navigationBarTitleText": "登录" } },
+    { "path": "pages/scan/index", "style": { "navigationBarTitleText": "扫码租车" } },
+    { "path": "pages/riding/index", "style": { "navigationBarTitleText": "骑行中" } },
+    { "path": "pages/order/index", "style": { "navigationBarTitleText": "我的订单" } },
+    { "path": "pages/order-detail/index", "style": { "navigationBarTitleText": "订单详情" } },
+    { "path": "pages/repair/index", "style": { "navigationBarTitleText": "故障上报" } },
+    { "path": "pages/mine/index", "style": { "navigationBarTitleText": "个人中心" } }
+  ],
+  "tabBar": {
+    "color": "#999",
+    "selectedColor": "#409eff",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页", "iconPath": "static/home.png", "selectedIconPath": "static/home-active.png" },
+      { "pagePath": "pages/order/index", "text": "订单", "iconPath": "static/order.png", "selectedIconPath": "static/order-active.png" },
+      { "pagePath": "pages/mine/index", "text": "我的", "iconPath": "static/mine.png", "selectedIconPath": "static/mine-active.png" }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "共享单车",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f8f8f8"
+  }
+}

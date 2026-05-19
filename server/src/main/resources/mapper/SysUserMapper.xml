@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bike.mapper.SysUserMapper">
+
+    <sql id="baseColumns">
+        id, username, password, nickname, phone, avatar, user_type, status, create_time, update_time
+    </sql>
+
+    <select id="findByUsername" resultType="SysUser">
+        SELECT <include refid="baseColumns"/> FROM sys_user WHERE username = #{username}
+    </select>
+
+    <select id="findById" resultType="SysUser">
+        SELECT <include refid="baseColumns"/> FROM sys_user WHERE id = #{id}
+    </select>
+
+    <select id="findList" resultType="SysUser">
+        SELECT <include refid="baseColumns"/> FROM sys_user
+        <where>
+            <if test="username != null and username != ''">AND username LIKE CONCAT('%', #{username}, '%')</if>
+            <if test="status != null">AND status = #{status}</if>
+            <if test="userType != null">AND user_type = #{userType}</if>
+        </where>
+        ORDER BY create_time DESC
+    </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sys_user (username, password, nickname, phone, avatar, user_type, status)
+        VALUES (#{username}, #{password}, #{nickname}, #{phone}, #{avatar}, #{userType}, #{status})
+    </insert>
+
+    <update id="update">
+        UPDATE sys_user
+        <set>
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="avatar != null">avatar = #{avatar},</if>
+            <if test="password != null">password = #{password},</if>
+            <if test="status != null">status = #{status},</if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM sys_user WHERE id = #{id}
+    </delete>
+
+</mapper>
