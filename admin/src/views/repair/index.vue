@@ -86,7 +86,7 @@
 
 <script setup>
 import { ref, reactive, onMounted, computed } from 'vue'
-import { getRepairList, getRepairById, handleRepair } from '@/api/repair'
+import { getRepairList, getRepairById, handleRepair as apiHandleRepair } from '@/api/repair'
 import { ElMessage } from 'element-plus'
 
 const loading = ref(false)
@@ -141,7 +141,7 @@ function handleRepair(row) {
 async function handleRepairSubmit() {
   submitLoading.value = true
   try {
-    await handleRepair(handleForm.id, {
+    await apiHandleRepair(handleForm.id, {
       status: handleForm.status,
       adminRemark: handleForm.adminRemark || ''
     })

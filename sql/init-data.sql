@@ -37,24 +37,24 @@ INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `co
 (5, 0, '报修管理', 0, '/repair', '', 'Tools', 5);
 
 -- 二级菜单 - 系统管理
-INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `component`, `icon`, `sort_order`) VALUES
-(21, 2, '用户管理', 1, '/system/user', 'system/user/index', 'User', 1),
-(22, 2, '角色管理', 1, '/system/role', 'system/role/index', 'UserFilled', 2),
-(23, 2, '菜单管理', 1, '/system/menu', 'system/menu/index', 'Menu', 3),
-(24, 2, '操作日志', 1, '/system/log', 'system/log/index', 'Document', 4);
+INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `component`, `permission`, `icon`, `sort_order`) VALUES
+(21, 2, '用户管理', 1, '/system/user', 'system/user/index', 'system:user:list', 'User', 1),
+(22, 2, '角色管理', 1, '/system/role', 'system/role/index', 'system:role:list', 'UserFilled', 2),
+(23, 2, '菜单管理', 1, '/system/menu', 'system/menu/index', 'system:menu:list', 'Menu', 3),
+(24, 2, '操作日志', 1, '/system/log', 'system/log/index', 'system:log:list', 'Document', 4);
 
 -- 二级菜单 - 车辆管理
-INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `component`, `icon`, `sort_order`) VALUES
-(31, 3, '车辆列表', 1, '/bike/list', 'bike/index', 'List', 1);
+INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `component`, `permission`, `icon`, `sort_order`) VALUES
+(31, 3, '车辆列表', 1, '/bike/list', 'bike/index', 'bike:list', 'List', 1);
 
 -- 二级菜单 - 景点与区域
-INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `component`, `icon`, `sort_order`) VALUES
-(41, 4, '景点管理', 1, '/scenic/spot', 'scenic/spot/index', 'PictureFilled', 1),
-(42, 4, '停车区域', 1, '/scenic/area', 'scenic/area/index', 'MapLocation', 2);
+INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `component`, `permission`, `icon`, `sort_order`) VALUES
+(41, 4, '景点管理', 1, '/scenic/spot', 'scenic/spot/index', 'scenic:list', 'PictureFilled', 1),
+(42, 4, '停车区域', 1, '/scenic/area', 'scenic/area/index', 'area:list', 'MapLocation', 2);
 
 -- 二级菜单 - 报修管理
-INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `component`, `icon`, `sort_order`) VALUES
-(51, 5, '报修列表', 1, '/repair/list', 'repair/index', 'WarningFilled', 1);
+INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `component`, `permission`, `icon`, `sort_order`) VALUES
+(51, 5, '报修列表', 1, '/repair/list', 'repair/index', 'repair:list', 'WarningFilled', 1);
 
 -- 按钮权限 - 系统管理
 INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `permission`, `sort_order`) VALUES
@@ -74,6 +74,22 @@ INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `pe
 (312, 31, '车辆编辑', 2, '', 'bike:edit', 2),
 (313, 31, '车辆删除', 2, '', 'bike:delete', 3),
 (314, 31, '状态变更', 2, '', 'bike:status', 4);
+
+-- 按钮权限 - 景点管理
+INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `permission`, `sort_order`) VALUES
+(411, 41, '景点新增', 2, '', 'scenic:add', 1),
+(412, 41, '景点编辑', 2, '', 'scenic:edit', 2),
+(413, 41, '景点删除', 2, '', 'scenic:delete', 3);
+
+-- 按钮权限 - 停车区域
+INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `permission`, `sort_order`) VALUES
+(421, 42, '区域新增', 2, '', 'area:add', 1),
+(422, 42, '区域编辑', 2, '', 'area:edit', 2),
+(423, 42, '区域删除', 2, '', 'area:delete', 3);
+
+-- 按钮权限 - 报修管理
+INSERT INTO `sys_menu` (`id`, `parent_id`, `menu_name`, `menu_type`, `path`, `permission`, `sort_order`) VALUES
+(511, 51, '报修处理', 2, '', 'repair:handle', 1);
 
 -- ----------------------------------------
 -- 5. 超级管理员拥有所有菜单权限

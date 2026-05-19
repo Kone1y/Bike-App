@@ -42,12 +42,10 @@ docker exec -it bike-mysql mysql -uroot -p123456 bike_app -e "SHOW TABLES;"
 
 如果容器丢失，重新创建：
 ```bash
-docker run -d --name bike-mysql -p 3306:3306 \
-  -e MYSQL_ROOT_PASSWORD=123456 \
-  -e MYSQL_DATABASE=bike_app \
-  mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+docker run -d --name bike-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 -e MYSQL_DATABASE=bike_app mysql:8.0 --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
 
 # 导入数据
+# 需要使用CMD命令
 docker exec -i bike-mysql mysql -uroot -p123456 < sql/schema.sql
 docker exec -i bike-mysql mysql -uroot -p123456 < sql/init-data.sql
 ```
