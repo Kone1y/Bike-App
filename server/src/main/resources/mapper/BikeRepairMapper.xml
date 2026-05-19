@@ -32,6 +32,11 @@
         WHERE id = #{id}
     </update>
 
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bike_repair (bike_id, user_id, description, images, status)
+        VALUES (#{bikeId}, #{userId}, #{description}, #{images}, #{status})
+    </insert>
+
     <select id="countByStatus" resultType="int">
         SELECT COUNT(*) FROM bike_repair WHERE status = #{status}
     </select>

@@ -27,6 +27,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 );
 
         registry.addInterceptor(permissionInterceptor)
-                .addPathPatterns("/api/**");
+                .addPathPatterns("/api/**")
+                .excludePathPatterns("/api/app/**");
     }
 }

@@ -10,5 +10,6 @@ public interface BikeRepairMapper {
     List<BikeRepair> findList(@Param("status") Integer status, @Param("bikeCode") String bikeCode);
     BikeRepair findById(@Param("id") Long id);
     int handle(@Param("id") Long id, @Param("status") Integer status, @Param("adminRemark") String adminRemark);
+    int insert(BikeRepair repair);
     int countByStatus(@Param("status") Integer status);
 }

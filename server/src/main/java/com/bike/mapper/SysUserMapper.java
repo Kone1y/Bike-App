@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface SysUserMapper {
     SysUser findByUsername(@Param("username") String username);
+    SysUser findByOpenid(@Param("openid") String openid);
     SysUser findById(@Param("id") Long id);
     List<SysUser> findList(@Param("username") String username, @Param("status") Integer status, @Param("userType") Integer userType);
     int insert(SysUser user);

@@ -3,11 +3,15 @@
 <mapper namespace="com.bike.mapper.SysUserMapper">
 
     <sql id="baseColumns">
-        id, username, password, nickname, phone, avatar, user_type, status, create_time, update_time
+        id, username, password, nickname, phone, avatar, openid, user_type, status, create_time, update_time
     </sql>
 
     <select id="findByUsername" resultType="SysUser">
         SELECT <include refid="baseColumns"/> FROM sys_user WHERE username = #{username}
+    </select>
+
+    <select id="findByOpenid" resultType="SysUser">
+        SELECT <include refid="baseColumns"/> FROM sys_user WHERE openid = #{openid}
     </select>
 
     <select id="findById" resultType="SysUser">
@@ -25,8 +29,8 @@
     </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO sys_user (username, password, nickname, phone, avatar, user_type, status)
-        VALUES (#{username}, #{password}, #{nickname}, #{phone}, #{avatar}, #{userType}, #{status})
+        INSERT INTO sys_user (username, password, nickname, phone, avatar, openid, user_type, status)
+        VALUES (#{username}, #{password}, #{nickname}, #{phone}, #{avatar}, #{openid}, #{userType}, #{status})
     </insert>
 
     <update id="update">

@@ -11,6 +11,7 @@ public class SysUser {
     private String nickname;
     private String phone;
     private String avatar;
+    private String openid;
     private Integer userType;
     private Integer status;
     private LocalDateTime createTime;

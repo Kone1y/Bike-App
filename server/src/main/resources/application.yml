@@ -23,3 +23,16 @@ jwt:
 # 文件上传
 file:
   upload-path: ./uploads/
+
+# 微信小程序配置
+wechat:
+  appid: your-appid-here
+  secret: your-secret-here
+  dev-mode: true
+
+# 计费配置
+billing:
+  base-fee: 2.00
+  free-duration: 10
+  rate-per-minute: 0.50
+  daily-cap: 30.00

@@ -9,6 +9,7 @@ import java.util.List;
 public interface BikeMapper {
     List<Bike> findList(@Param("bikeCode") String bikeCode, @Param("status") Integer status, @Param("areaId") Long areaId);
     Bike findById(@Param("id") Long id);
+    Bike findByCode(@Param("bikeCode") String bikeCode);
     int insert(Bike bike);
     int update(Bike bike);
     int deleteById(@Param("id") Long id);

@@ -25,6 +25,13 @@
         WHERE b.id = #{id}
     </select>
 
+    <select id="findByCode" resultType="Bike">
+        SELECT <include refid="baseColumns"/>, pa.name AS area_name
+        FROM bike b
+        LEFT JOIN parking_area pa ON b.area_id = pa.id
+        WHERE b.bike_code = #{bikeCode}
+    </select>
+
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO bike (bike_code, status, lng, lat, area_id)
         VALUES (#{bikeCode}, #{status}, #{lng}, #{lat}, #{areaId})
